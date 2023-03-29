@@ -1,16 +1,21 @@
 // Import the express, connection and routes models
+const express = require("express");
+const db = require("../Develop/config/connection");
+const routes = require("./routes");
 
-//  port numebrs
+//  Insert port access
+const PORT = process.env.PORT || 3001;
 
 // declare app variables for express
+const app = express();
 
-// middleware
-// do we need to know this stuff? and what it does?
+// Use middleware
 // A format of writing urls, it will handle spaces in the URL
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // .use for routes
+app.use("routes");
 
 // database connection, std
 db.once("open", () => {
