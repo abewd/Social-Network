@@ -2,7 +2,7 @@
 const { connect, connection } = require("mongoose");
 
 // Connect the mongoose database to the local host
-connect("mongodb://localhost/socialNetwork", {
+connect("mongodb://127.0.0.1/fullnameVirtual", {
   // Tells mongoDB that a new user is parsed / introduced
   useNewUrlParser: true,
   // Utilise the new engine if required
