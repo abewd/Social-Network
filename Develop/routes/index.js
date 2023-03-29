@@ -1,9 +1,10 @@
-const router 
-const apiRoutes 
+// Import router and apiRoutes
+const router = require("express").router();
+const apiRoutes = require("./api");
 
-// .use fro api routes 
-router.use("/api", apiroutes )
+// .use for API routes
+router.use("/api", apiroutes);
+router.use((req, res) => res.send("wrong route"));
 
-router.use((req, res) => res.send("wrong route"))
-
-// export the router 
+// export the router
+module.exports = router;
