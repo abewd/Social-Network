@@ -47,7 +47,7 @@ thoughtSchema.virtual("friendCount").get(function () {
 });
 
 // Use the schema to make a model
-const User = model("Though", thoughtSchema);
+const Thought = model("Though", thoughtSchema);
 
 // Export data
 module.exports = Thought;

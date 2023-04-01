@@ -3,7 +3,7 @@ const router = require("express").Router();
 const apiRoutes = require("./api");
 
 // .use for API routes
-router.use("/api", apiroutes);
+router.use("/api", apiRoutes);
 router.use((req, res) => res.send("wrong route"));
 
 // export the router
