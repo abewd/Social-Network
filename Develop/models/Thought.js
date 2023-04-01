@@ -11,9 +11,8 @@ const thoughtSchema = new Schema(
       maxLength: 280,
     },
     createdAt: {
-      type: String,
-      format: date - time,
-      default: "2023",
+      type: Date,
+      default: date.now,
     },
     thoughts: [
       {
@@ -21,12 +20,15 @@ const thoughtSchema = new Schema(
         ref: "Thought",
       },
     ],
-    friends: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
+    username: {
+      type: String,
+      required: true,
+    },
+
+    reactions: {
+      type: String,
+      required: true,
+    },
   },
 
   {
@@ -45,7 +47,7 @@ userSchema.virtual("friendCount").get(function () {
 });
 
 // Use the schema to make a model
-const User = model("User", userSchema);
+const User = model("Though", thoughtSchema);
 
 // Export data
-module.exports = User;
+module.exports = Thought;

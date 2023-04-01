@@ -91,8 +91,7 @@ module.exports = {
       })
       .catch((err) => res.status(500).json(err));
   },
-  //add a reaction
-  //use path /api/thoughts/thoughtId/reactions with body of reactionBody and username
+  //Add a reaction
   addReaction({ params, body }, res) {
     Thought.findOneAndUpdate(
       { _id: params.thoughtId },
@@ -109,8 +108,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
-  //delete a reaction
-  //use path /api/thoughts/thoughtId/reactions/reactionId to delete a reaction
+  //Delete a reaction
   deleteReaction({ params, body }, res) {
     Thought.findOneAndUpdate(
       { _id: params.thoughtId },
@@ -122,7 +120,7 @@ module.exports = {
           res.status(404).json({ message: "No thought found with this Id" });
           return;
         }
-        res.json({ message: "Successfully deleted the reaction" });
+        res.json({ message: "Successfully deleted reaction" });
       })
       .catch((err) => res.status(500).json(err));
   },
