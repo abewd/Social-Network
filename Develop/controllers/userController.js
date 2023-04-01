@@ -1,15 +1,12 @@
 // Require the models for Thought and User
 const { User, Thought } = require("../models");
 
-// You can also write it like this, the long way
-// const { Thought }  = require("../models");
-// const { User } = require("../models");
-
-// Export User methods
+// Export methods for the User
 module.exports = {
   // Get all Users
   getUsers(req, res) {
     User.find({})
+      // Convert the Thought retreived to JSON
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => res.status(500).json(err));
   },
@@ -24,6 +21,7 @@ module.exports = {
       .select("-__v")
       // I dont understand the above:
       .then((dbUserData) => {
+        // If empty
         if (!dbUserData) {
           res.status(404).json({ message: "No User found with this ID" });
           return;
@@ -31,16 +29,14 @@ module.exports = {
         res.json(dbUserData);
       });
   },
-  // create a new user
-  //use path /api/users/ with body expecting username and email (must be valid unique email address)
+  // Create a new User
   createUser(req, res) {
     User.create(req.body)
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => res.status(500).json(err));
   },
 
-  //update a single user by Id
-  //use path /api/users/userId with body expecting username and email (must be valid unique email address)
+  // Update a User
   updateSingleUser({ params, body }, res) {
     User.findOneAndUpdate({ _id: params.userId }, body, { runValidators: true })
       .then((dbUserData) => {
@@ -53,8 +49,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
-  //delete a single user by Id
-  //use path /api/users/userId
+  // Delete a User
   deleteSingleUser({ params }, res) {
     User.findOneAndDelete({ _id: params.userId })
       .then((dbUserData) => {
@@ -81,8 +76,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
-  //add a Friend by Id
-  //use path /api/users/userId/friends/friendId
+  //Add a Friend by Id
   addFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
@@ -99,8 +93,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
-  //delete a friend by Id
-  //use route /api/users/userId/friends/friendId
+  //Delete a friend by Id
   deleteFriend({ params }, res) {
     User.findOneAndUpdate(
       { _id: params.userId },

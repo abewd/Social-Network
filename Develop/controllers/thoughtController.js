@@ -12,7 +12,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
-  // Get a thought from an ID
+  // Get a Thought from an ID
   // Utilise the api/thought/thoughtID
   getSingleThought(req, res) {
     // Find a Thought based on the given Id required
