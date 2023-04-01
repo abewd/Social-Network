@@ -12,7 +12,7 @@ const thoughtSchema = new Schema(
     },
     createdAt: {
       type: Date,
-      default: date.now,
+      default: Date.now,
     },
     thoughts: [
       {
@@ -42,7 +42,7 @@ const thoughtSchema = new Schema(
 );
 
 // Create virtual and model
-userSchema.virtual("friendCount").get(function () {
+thoughtSchema.virtual("friendCount").get(function () {
   return `friends: ${this.friends.length}`;
 });
 

@@ -1,5 +1,5 @@
 // Import router and apiRoutes
-const router = require("express").router();
+const router = require("express").Router();
 const apiRoutes = require("./api");
 
 // .use for API routes
