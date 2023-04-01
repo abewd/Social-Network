@@ -3,7 +3,7 @@ const { User, Thought } = require("../models");
 
 // Export methods for the Thought
 module.exports = {
-  getThoughts(req, res) {
+  getThought(req, res) {
     // Get all thoughts
     Thought.find()
       // Convert the thoughts to a json to be uploaded to Insomnia
