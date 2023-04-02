@@ -1,5 +1,6 @@
 // Import the express, connection and routes models
 const express = require("express");
+const faker = require("faker");
 const db = require("../Develop/config/connection");
 const routes = require("./routes");
 
@@ -15,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // .use for routes
-app.use("routes");
+app.use(routes);
 
 // database connection, std
 db.once("open", () => {
