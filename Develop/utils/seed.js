@@ -1,5 +1,6 @@
 // Connect to the main connection
 const connection = require("../config/connection");
+const { faker } = require("@faker-js/faker");
 
 // Import the User and Thought models from the models folder
 const { User, Thought } = require("../models");
@@ -22,7 +23,6 @@ async function seedDatabase() {
       await User.deleteMany({});
 
       // Import the 'faker' library for generating random data
-      const faker = require("faker");
 
       // Create the array of usernames and emails
       // Create 20 random users and emails

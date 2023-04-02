@@ -1,6 +1,5 @@
 // Import the express, connection and routes models
 const express = require("express");
-const faker = require("faker");
 const db = require("../Develop/config/connection");
 const routes = require("./routes");
 
