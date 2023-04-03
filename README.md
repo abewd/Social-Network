@@ -1,16 +1,14 @@
 # 18 NoSQL: Social Network API
 
-## Your Task
+## Introduction
 
-MongoDB is a popular choice for many social networks due to its speed with large amounts of data and flexibility with unstructured data. Over the last part of this course, you’ll use several of the technologies that social networking platforms use in their full-stack applications. Because the foundation of these applications is data, it’s important that you understand how to build and structure the API first.
+This is a social media platform which you can share your thoughts, add friends and receive reactions on your post!
 
-Your Challenge is to build an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. You’ll use Express.js for routing, a MongoDB database, and the Mongoose ODM. In addition to using the [Express.js](https://www.npmjs.com/package/express) and [Mongoose](https://www.npmjs.com/package/mongoose) packages, you may also optionally use a JavaScript date library of your choice or the native JavaScript `Date` object to format timestamps.
+Below is a video link on how you can utilise it through insomnia:
+https://drive.google.com/file/d/19lz0mb8_UwNzPrrrcIf5XHhLFmL3zRQb/view
 
-Ensure that the `mongoose` package is using version 6+. The latest version of `mongoose` (version 7+) introduces potential breaking changes to activities. All activities have version `6.9.2` in their respective `package.json` files, but should you install `mongoose`, please use `npm i mongoose@6.9.2`.
-
-No seed data is provided, so you’ll need to create your own data using Insomnia after you’ve created your API.
-
-Because this application won’t be deployed, you’ll also need to create a walkthrough video that demonstrates its functionality and all of the following acceptance criteria being met. You’ll need to submit a link to the video and add it to the README of your project.
+GitHub repository:
+https://github.com/abewd/Social-Network
 
 ## User Story
 
@@ -68,23 +66,26 @@ Use the following guidelines to set up your models and API routes:
 
 **User**:
 
-* `username`
-  * String
-  * Unique
-  * Required
-  * Trimmed
+- `username`
 
-* `email`
-  * String
-  * Required
-  * Unique
-  * Must match a valid email address (look into Mongoose's matching validation)
+  - String
+  - Unique
+  - Required
+  - Trimmed
 
-* `thoughts`
-  * Array of `_id` values referencing the `Thought` model
+- `email`
 
-* `friends`
-  * Array of `_id` values referencing the `User` model (self-reference)
+  - String
+  - Required
+  - Unique
+  - Must match a valid email address (look into Mongoose's matching validation)
+
+- `thoughts`
+
+  - Array of `_id` values referencing the `Thought` model
+
+- `friends`
+  - Array of `_id` values referencing the `User` model (self-reference)
 
 **Schema Settings**:
 
@@ -94,22 +95,25 @@ Create a virtual called `friendCount` that retrieves the length of the user's `f
 
 **Thought**:
 
-* `thoughtText`
-  * String
-  * Required
-  * Must be between 1 and 280 characters
+- `thoughtText`
 
-* `createdAt`
-  * Date
-  * Set default value to the current timestamp
-  * Use a getter method to format the timestamp on query
+  - String
+  - Required
+  - Must be between 1 and 280 characters
 
-* `username` (The user that created this thought)
-  * String
-  * Required
+- `createdAt`
 
-* `reactions` (These are like replies)
-  * Array of nested documents created with the `reactionSchema`
+  - Date
+  - Set default value to the current timestamp
+  - Use a getter method to format the timestamp on query
+
+- `username` (The user that created this thought)
+
+  - String
+  - Required
+
+- `reactions` (These are like replies)
+  - Array of nested documents created with the `reactionSchema`
 
 **Schema Settings**:
 
@@ -119,23 +123,26 @@ Create a virtual called `reactionCount` that retrieves the length of the thought
 
 **Reaction** (SCHEMA ONLY)
 
-* `reactionId`
-  * Use Mongoose's ObjectId data type
-  * Default value is set to a new ObjectId
+- `reactionId`
 
-* `reactionBody`
-  * String
-  * Required
-  * 280 character maximum
+  - Use Mongoose's ObjectId data type
+  - Default value is set to a new ObjectId
 
-* `username`
-  * String
-  * Required
+- `reactionBody`
 
-* `createdAt`
-  * Date
-  * Set default value to the current timestamp
-  * Use a getter method to format the timestamp on query
+  - String
+  - Required
+  - 280 character maximum
+
+- `username`
+
+  - String
+  - Required
+
+- `createdAt`
+  - Date
+  - Set default value to the current timestamp
+  - Use a getter method to format the timestamp on query
 
 **Schema Settings**:
 
@@ -145,11 +152,11 @@ This will not be a model, but rather will be used as the `reaction` field's subd
 
 **`/api/users`**
 
-* `GET` all users
+- `GET` all users
 
-* `GET` a single user by its `_id` and populated thought and friend data
+- `GET` a single user by its `_id` and populated thought and friend data
 
-* `POST` a new user:
+- `POST` a new user:
 
 ```json
 // example data
@@ -159,9 +166,9 @@ This will not be a model, but rather will be used as the `reaction` field's subd
 }
 ```
 
-* `PUT` to update a user by its `_id`
+- `PUT` to update a user by its `_id`
 
-* `DELETE` to remove user by its `_id`
+- `DELETE` to remove user by its `_id`
 
 **BONUS**: Remove a user's associated thoughts when deleted.
 
@@ -169,19 +176,19 @@ This will not be a model, but rather will be used as the `reaction` field's subd
 
 **`/api/users/:userId/friends/:friendId`**
 
-* `POST` to add a new friend to a user's friend list
+- `POST` to add a new friend to a user's friend list
 
-* `DELETE` to remove a friend from a user's friend list
+- `DELETE` to remove a friend from a user's friend list
 
 ---
 
 **`/api/thoughts`**
 
-* `GET` to get all thoughts
+- `GET` to get all thoughts
 
-* `GET` to get a single thought by its `_id`
+- `GET` to get a single thought by its `_id`
 
-* `POST` to create a new thought (don't forget to push the created thought's `_id` to the associated user's `thoughts` array field)
+- `POST` to create a new thought (don't forget to push the created thought's `_id` to the associated user's `thoughts` array field)
 
 ```json
 // example data
@@ -192,91 +199,92 @@ This will not be a model, but rather will be used as the `reaction` field's subd
 }
 ```
 
-* `PUT` to update a thought by its `_id`
+- `PUT` to update a thought by its `_id`
 
-* `DELETE` to remove a thought by its `_id`
+- `DELETE` to remove a thought by its `_id`
 
 ---
 
 **`/api/thoughts/:thoughtId/reactions`**
 
-* `POST` to create a reaction stored in a single thought's `reactions` array field
+- `POST` to create a reaction stored in a single thought's `reactions` array field
 
-* `DELETE` to pull and remove a reaction by the reaction's `reactionId` value
+- `DELETE` to pull and remove a reaction by the reaction's `reactionId` value
 
 ## Grading Requirements
 
 > **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
 >
-> * A repository that has no code
+> - A repository that has no code
 >
-> * A repository that includes a unique name but nothing else
+> - A repository that includes a unique name but nothing else
 >
-> * A repository that includes only a README file but nothing else
+> - A repository that includes only a README file but nothing else
 >
-> * A repository that only includes starter code
+> - A repository that only includes starter code
 
 This Challenge is graded based on the following criteria:
 
 ### Deliverables: 10%
 
-* Your GitHub repository containing your application code.
+- Your GitHub repository containing your application code.
 
 ### Walkthrough Video: 37%
 
-* A walkthrough video that demonstrates the functionality of the social media API must be submitted, and a link to the video should be included in your README file.
+- A walkthrough video that demonstrates the functionality of the social media API must be submitted, and a link to the video should be included in your README file.
 
-  * The walkthrough video must show all of the technical acceptance criteria being met.
+  - The walkthrough video must show all of the technical acceptance criteria being met.
 
-  * The walkthrough video must demonstrate how to start the application’s server.
+  - The walkthrough video must demonstrate how to start the application’s server.
 
-  * The walkthrough video must demonstrate GET routes for all users and all thoughts being tested in Insomnia.
+  - The walkthrough video must demonstrate GET routes for all users and all thoughts being tested in Insomnia.
 
-  * The walkthrough video must demonstrate GET routes for a single user and a single thought being tested in Insomnia.
+  - The walkthrough video must demonstrate GET routes for a single user and a single thought being tested in Insomnia.
 
-  * The walkthrough video must demonstrate POST, PUT, and DELETE routes for users and thoughts being tested in Insomnia.
+  - The walkthrough video must demonstrate POST, PUT, and DELETE routes for users and thoughts being tested in Insomnia.
 
-  * Walkthrough video must demonstrate POST and DELETE routes for a user’s friend list being tested in Insomnia.
+  - Walkthrough video must demonstrate POST and DELETE routes for a user’s friend list being tested in Insomnia.
 
-  * Walkthrough video must demonstrate POST and DELETE routes for reactions to thoughts being tested in Insomnia.
+  - Walkthrough video must demonstrate POST and DELETE routes for reactions to thoughts being tested in Insomnia.
 
 ### Technical Acceptance Criteria: 40%
 
-* Satisfies all of the preceding acceptance criteria plus the following:
+- Satisfies all of the preceding acceptance criteria plus the following:
 
-  * Uses the [Mongoose package](https://www.npmjs.com/package/mongoose) to connect to a MongoDB database.
+  - Uses the [Mongoose package](https://www.npmjs.com/package/mongoose) to connect to a MongoDB database.
 
-  * Includes User and Thought models outlined in the Challenge instructions.
+  - Includes User and Thought models outlined in the Challenge instructions.
 
-  * Includes schema settings for User and Thought models as outlined in the Challenge instructions.
+  - Includes schema settings for User and Thought models as outlined in the Challenge instructions.
 
-  * Includes Reactions as the `reaction` field's subdocument schema in the Thought model.
+  - Includes Reactions as the `reaction` field's subdocument schema in the Thought model.
 
-  * Uses functionality to format queried timestamps properly.
+  - Uses functionality to format queried timestamps properly.
 
 ### Repository Quality: 13%
 
-* Repository has a unique name.
+- Repository has a unique name.
 
-* Repository follows best practices for file structure and naming conventions.
+- Repository follows best practices for file structure and naming conventions.
 
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
+- Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
 
-* Repository contains multiple descriptive commit messages.
+- Repository contains multiple descriptive commit messages.
 
-* Repository contains a high-quality README with description and a link to a walkthrough video.
+- Repository contains a high-quality README with description and a link to a walkthrough video.
 
 ### Bonus: +10 Points
 
-* Application deletes a user's associated thoughts when the user is deleted.
+- Application deletes a user's associated thoughts when the user is deleted.
 
 ## Review
 
 You are required to submit BOTH of the following for review:
 
-* A walkthrough video demonstrating the functionality of the application and all of the acceptance criteria being met.
+- A walkthrough video demonstrating the functionality of the application and all of the acceptance criteria being met.
 
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
+- The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
 
 ---
+
 © 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
