@@ -15,7 +15,7 @@ const { schema } = require("./User");
 const reactionSchema = new Schema(
   {
     reactionId: {
-      type: schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       // Auto fills the object id
       default: () => new Types.ObjectId(),
     },

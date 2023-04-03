@@ -1,5 +1,6 @@
 // Imoprt  mongoose
 const { Schema, model } = require("mongoose");
+const reactionSchema = require("./Reaction");
 
 // Define the schema
 const thoughtSchema = new Schema(
@@ -25,12 +26,7 @@ const thoughtSchema = new Schema(
       required: true,
     },
 
-    reactions: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Reaction",
-      },
-    ],
+    reactions: [reactionSchema],
   },
 
   {
