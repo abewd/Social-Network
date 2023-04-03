@@ -23,6 +23,7 @@ async function seedDatabase() {
       await User.deleteMany({});
 
       // Import the 'faker' library for generating random data
+      const { faker } = require("@faker-js/faker");
 
       // Create the array of usernames and emails
       // Create 20 random users and emails

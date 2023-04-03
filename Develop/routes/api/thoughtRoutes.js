@@ -17,7 +17,7 @@ const {
 // This is the mainpage
 router.route("/").get(getThought);
 
-// Route for creating a post
+// Route for creating a thought
 router.route("/:userId").post(createThought);
 
 // RRoute for finding a thought using an Id
@@ -25,7 +25,7 @@ router.route("/:userId").post(createThought);
 router.route("/:thoughtId").get(getSingleThought).put(updateThought);
 
 // Get a thought then delete it
-router.route("/:thoughtId/users/:userIddel").delete(deleteThought);
+router.route("/:thoughtId/users/:userId").delete(deleteThought);
 
 // Add reaction
 router.route("/:thoughtId/reactions").post(addReaction);

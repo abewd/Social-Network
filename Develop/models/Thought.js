@@ -14,21 +14,23 @@ const thoughtSchema = new Schema(
       type: Date,
       default: Date.now,
     },
-    thoughts: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Thought",
-      },
-    ],
+    // thoughts: [
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "Thought",
+    //   },
+    // ],
     username: {
       type: String,
       required: true,
     },
 
-    reactions: {
-      type: String,
-      required: true,
-    },
+    reactions: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Reaction",
+      },
+    ],
   },
 
   {
@@ -43,11 +45,11 @@ const thoughtSchema = new Schema(
 
 // Create virtual and model
 thoughtSchema.virtual("friendCount").get(function () {
-  return `friends: ${this.friends.length}`;
+  return `friends: ${this.friends}`;
 });
 
 // Use the schema to make a model
-const Thought = model("Though", thoughtSchema);
+const Thought = model("Thought", thoughtSchema);
 
 // Export data
 module.exports = Thought;

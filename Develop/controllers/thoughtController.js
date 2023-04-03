@@ -22,7 +22,7 @@ module.exports = {
         (thoughtText) =>
           !thoughtText
             ? // If ID not recognised
-              res.status(404).json({ messgae: "No Thought with this ID" })
+              res.status(404).json({ message: "No Thought with this ID" })
             : // If it is
               res.json(thoughtText)
       )
@@ -56,7 +56,7 @@ module.exports = {
   // Update a Thought
   // request the id then...
   updateThought({ params, body }, res) {
-    Thought.findOneAndUpdate({ _id: params.thoughtID }, body, {
+    Thought.findOneAndUpdate({ _id: params.thoughtId }, body, {
       new: true,
     })
       // if the id matches a thought you can insert new Json "new: true"
@@ -95,7 +95,7 @@ module.exports = {
   addReaction({ params, body }, res) {
     Thought.findOneAndUpdate(
       { _id: params.thoughtId },
-      { $addToSet: { reactions: body } },
+      { $push: { reactions: body } },
       { new: true, runValidators: true }
     )
       .then((dbThoughtData) => {
